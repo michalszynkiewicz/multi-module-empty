@@ -1,3 +1,5 @@
+package com.example;
+
 /**
  * Author: Michal Szynkiewicz, michal.l.szynkiewicz@gmail.com
  * Date: 4/8/16
