@@ -65,12 +65,13 @@ jobs:
       - name: Build
         shell: bash
         # Despite the pre-calculated run_jvm flag, GIB has to be re-run here to figure out the exact submodules to build.
-        run: ./mvnw $COMMON_MAVEN_ARGS install
+        run: ./mvnw $COMMON_MAVEN_ARGS install -Dfail=true
       - name: Prepare failure archive (if maven failed)
         if: failure()
         shell: bash
         run: find . -name '*-reports' -type d -o -name '*.log' | tar -czf test-reports.tgz -T -
       - name: Upload build reports (if build failed)
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: "build-reports-JVM Tests - JDK 11"
